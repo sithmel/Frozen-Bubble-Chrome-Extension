@@ -309,6 +309,31 @@ var Player_Controller = (function(inCompressor) {
 				}
 			});
 
+            var joystick = new VirtualJoystick({mouseSupport: true}),
+                joystick_moving = false;
+            
+            setInterval(function (){
+				if (!stopped) {
+                    if (joystick.left()){
+                        joystick_moving = true;
+        				moveToLeft();
+                    }
+                    else if (joystick.right()){
+                        joystick_moving = true;
+        				moveToRight();
+                    }
+                    else if (joystick.deltaY() < -40){
+        					shoot();
+                    }
+                    else {
+                        if (joystick_moving){
+                            joystick_moving = false;
+            				moveToCenter();
+                        }
+                    }
+                }
+            } ,100);
+            
 			document.addEventListener('keyup', function(inEvent) {
 				moveToCenter();
 			});

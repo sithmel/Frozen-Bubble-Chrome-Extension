@@ -1,0 +1,27 @@
+{
+	"name": "Frozen Bubble",
+	"description": "Frozen Bubble is a free software Puzzle Bobble style computer game. This is a little version of the game based on HTML5",
+	"version": "1.0.0.0",
+    "launch_path": "index.html",
+	"icons": {
+		"16": "img/icons/frozen_16_16.png",
+		"32": "img/icons/frozen_32_32.png",
+		"48": "img/icons/frozen_48_48.png",
+		"128": "img/icons/frozen_128_128.png"
+	},
+    "developer": {
+        "name": "Maurizio Lupo",
+        "url": "http://sithmel.blogspot.com"
+    },
+    "installs_allowed_from": ["*"],
+    "default_locale": "en",
+    "permissions": {
+        "desktop-notification": {
+            "description" : "To show notifications"
+        },
+        "geolocation": {
+            "description" : "Marking out user location"
+        }
+    }
+}
+

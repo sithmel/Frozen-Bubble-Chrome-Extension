@@ -80,6 +80,9 @@ var Game_Controller = (function() {
 	  *
 	  */
 	var showCredits = function() {
+        if (!config.cvLink){
+            return;
+        }
 		// Creates the wood background
 		var backgroundDiv = document.createElement("div");
 		backgroundDiv.classList.add('credits_background');
@@ -200,10 +203,13 @@ var Game_Controller = (function() {
 			}
 			var levelTextObj = new Text_Tool('level: ' + levelText);
 			levelTextObj.init(config.scoreBoard.x, config.scoreBoard.y);
+			levelTextObj.addClass('level-text');
 
 			// Show the score into the scoreboard and save it
+			var rowHeight = config.scoreBoard.rowHeight || 20;
 			scoreText = new Text_Tool();
-			scoreText.init(config.scoreBoard.x, config.scoreBoard.y + 20);
+			scoreText.init(config.scoreBoard.x, config.scoreBoard.y + rowHeight);
+			scoreText.addClass('score-text');
 			setScore(getScore());
 
 			// Launch the compressor

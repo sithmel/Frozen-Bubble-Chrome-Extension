@@ -14,6 +14,8 @@
   * @param inTimeInterval <optional int>: The total number of images contained into the spreadsheet
   *
   */
+
+
 var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inNumberOfImages) {
 	// Will contain the DOM div element that represents the image
 	var divElm = null;
@@ -54,7 +56,7 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 	var setAnimationImage = function(inPosition) {
 		var position = inPosition * divElm.offsetWidth;
 
-		divElm.style.setProperty('background-position', '-' + position + 'px 0px', '!important');
+		divElm.style.setProperty('background-position', '-' + position + 'px 0px');
 	};
 
 	/**
@@ -360,8 +362,8 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		setPos: function(inX, inY) {
 			curentX = inX;
 			curentY = inY;
-			divElm.style.setProperty('top', inY + 'px', '!important');
-			divElm.style.setProperty('left', inX + 'px', '!important');
+			divElm.style.setProperty('top', inY + 'px');
+			divElm.style.setProperty('left', inX + 'px');
 		},
 
 		/**
@@ -435,7 +437,9 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		  *
 		  */
 		rotate: function(inDeg) {
-			divElm.style.setProperty('-webkit-transform', 'rotate(' + inDeg + 'deg)', '!important');
+			divElm.style.setProperty('-webkit-transform', 'rotate(' + inDeg + 'deg)');
+			divElm.style.setProperty('-moz-transform', 'rotate(' + inDeg + 'deg)');
+			divElm.style.setProperty('transform', 'rotate(' + inDeg + 'deg)');
 		},
 
 		/**
@@ -508,7 +512,7 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		  */
 		init: function() {
 			var mainCanvas = document.getElementById(config.gameCanvas.id);
-
+			            
 			divElm = document.createElement("div");
 			divElm.classList.add(inClass);
 

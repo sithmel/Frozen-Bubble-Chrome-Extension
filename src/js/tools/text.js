@@ -188,6 +188,10 @@ var Text_Tool = (function (inText, inFontType){
 			containerDiv.addEventListener('click', inFunction);
 		},
 
+		addClass: function(cl) {
+			containerDiv.classList.add(cl);
+		},
+
 		/**
 		  * This method creates letter by letter the text to show
 		  * If a previous text is set, remove the text before create the new one

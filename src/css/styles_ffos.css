@@ -11,8 +11,9 @@ html, body {
 
 body{
 	min-width: 340px;
-	background: url('../img/backgrounds/back_one_player_narrow.png') no-repeat center 0, url('../img/backgrounds/back_one_player_narrow_back.png') repeat-x ;
-    background-color: #c0c1ef;
+	background: url('../img/backgrounds/back_one_player_narrow.png') no-repeat center 0;
+/*	, url('../img/backgrounds/back_one_player_narrow_back.png') repeat-x ;*/
+/*    background-color: #c0c1ef;*/
 }
 
 #main_wrapper{

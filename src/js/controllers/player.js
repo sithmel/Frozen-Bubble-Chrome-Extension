@@ -309,9 +309,24 @@ var Player_Controller = (function(inCompressor) {
 				}
 			});
 
-            var joystick = new VirtualJoystick({mouseSupport: true}),
+            var joystick = new VirtualJoystick({mouseSupport: config.debug}),
                 joystick_moving = false;
             
+            var t0;
+			document.addEventListener('touchstart', function(inEvent) {
+                t0 = new Date();
+			});
+			document.addEventListener('touchend', function(inEvent) {
+			    var td = new Date() - t0;
+			    if (td < 200){
+                    shoot();
+			    }
+			    
+			});
+
+
+
+
             setInterval(function (){
 				if (!stopped) {
                     if (joystick.left()){
@@ -322,9 +337,9 @@ var Player_Controller = (function(inCompressor) {
                         joystick_moving = true;
         				moveToRight();
                     }
-                    else if (joystick.deltaY() < -40){
-        					shoot();
-                    }
+//                    else if (joystick.deltaY() < -40){
+//        					shoot();
+//                    }
                     else {
                         if (joystick_moving){
                             joystick_moving = false;

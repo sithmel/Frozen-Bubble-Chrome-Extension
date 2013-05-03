@@ -313,21 +313,43 @@ var Player_Controller = (function(inCompressor) {
                 joystick_moving = false;
             
             var t0;
+
 			document.addEventListener('touchstart', function(inEvent) {
                 t0 = new Date();
 			});
+			
 			document.addEventListener('touchend', function(inEvent) {
 			    var td = new Date() - t0;
 			    if (td < 200){
                     shoot();
 			    }
-			    
 			});
 
+            if(config.debug){
+			    document.addEventListener('mousedown', function(inEvent) {
+                    t0 = new Date();
+			    });
+			    document.addEventListener('mouseup', function(inEvent) {
+			        var td = new Date() - t0;
+			        if (td < 120){
+                        shoot();
+			        }
+			        
+			    });
+            }
 
 
+            window.requestAnimFrame = (function(){
+              return  window.requestAnimationFrame       ||
+                      window.webkitRequestAnimationFrame ||
+                      window.mozRequestAnimationFrame    ||
+                      function( callback ){
+                        window.setTimeout(callback, 1000 / 60);
+                      };
+            })();
 
-            setInterval(function (){
+
+            var checkJoystick = function (){
 				if (!stopped) {
                     if (joystick.left()){
                         joystick_moving = true;
@@ -337,9 +359,6 @@ var Player_Controller = (function(inCompressor) {
                         joystick_moving = true;
         				moveToRight();
                     }
-//                    else if (joystick.deltaY() < -40){
-//        					shoot();
-//                    }
                     else {
                         if (joystick_moving){
                             joystick_moving = false;
@@ -347,7 +366,13 @@ var Player_Controller = (function(inCompressor) {
                         }
                     }
                 }
-            } ,100);
+            };
+            (function animloop(){
+              requestAnimFrame(animloop);
+              checkJoystick();
+            })();
+//            setInterval(function (){
+//            } ,100);
             
 			document.addEventListener('keyup', function(inEvent) {
 				moveToCenter();

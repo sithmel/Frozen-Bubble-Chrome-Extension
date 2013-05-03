@@ -154,13 +154,13 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 	this._stickY	= y;
 
 
-	this._stickEl.style.display	= "";
-	this._stickEl.style.left	= (x - this._stickEl.width /2)+"px";
-	this._stickEl.style.top		= (y - this._stickEl.height/2)+"px";
+//	this._stickEl.style.display	= "";
+//	this._stickEl.style.left	= (x - this._stickEl.width /2)+"px";
+//	this._stickEl.style.top		= (y - this._stickEl.height/2)+"px";
 
-	this._baseEl.style.display	= "";
-	this._baseEl.style.left		= (x - this._baseEl.width /2)+"px";
-	this._baseEl.style.top		= (y - this._baseEl.height/2)+"px";
+//	this._baseEl.style.display	= "";
+//	this._baseEl.style.left		= (x - this._baseEl.width /2)+"px";
+//	this._baseEl.style.top		= (y - this._baseEl.height/2)+"px";
 }
 
 VirtualJoystick.prototype._onMove	= function(x, y)
@@ -168,8 +168,8 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 	if( this._pressed === true ){
 		this._stickX	= x;
 		this._stickY	= y;
-		this._stickEl.style.left	= (x - this._stickEl.width /2)+"px";
-		this._stickEl.style.top		= (y - this._stickEl.height/2)+"px";
+//		this._stickEl.style.left	= (x - this._stickEl.width /2)+"px";
+//		this._stickEl.style.top		= (y - this._stickEl.height/2)+"px";
 	}
 }
 

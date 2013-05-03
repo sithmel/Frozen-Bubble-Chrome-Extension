@@ -125,7 +125,9 @@ var config = {
 		// Sound to be played when on each shoot
 		shotSnd: 'snd/launch.ogg',
 		// The time in miliseconds for rotate a degree the shooter, determinates the angular speed
-		rotationSpeedLoop: 8
+//		rotationSpeedLoop: 8
+		rotationSpeedLoop: 12
+		
 	},
 
 	// Configuration parameters for Bullble_Controller

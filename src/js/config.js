@@ -8,12 +8,13 @@ var config = {
 	// Debug var, set false for a production env
 	debug: false,
 
-	// Lik to the author CV
-	cvLink: 'http://es.linkedin.com/pub/alonso-vidales/6/a9b/225',
+	// Link to the author CV
+	cvLink: '',
 
 	// Main window configuration
 	windowConf: {
-		width: 640,
+//		width: 640,
+		width: 340,
 		height: 480
 	},
 
@@ -31,19 +32,23 @@ var config = {
 	// The corners coordinates game pitch
 	ballsField: {
 		topLeft: {
-			x: 197,
+//			x: 197,
+			x: 47,
 			y: 12
 		},
 		topRight: {
-			x: 455,
+//			x: 455,
+			x: 305,
 			y: 10
 		},
 		bottLeft: {
-			x: 197,
+//			x: 197,
+			x: 47,
 			y: 390
 		},
 		bottRight: {
-			x: 455,
+//			x: 455,
+			x: 305,
 			y: 390
 		}
 	},
@@ -51,7 +56,8 @@ var config = {
 	// The size and coordinates of the shooter
 	shooter: {
 		top: 364,
-		left: 275,
+//		left: 275,
+		left: 125,
 		width: 100,
 		height: 100,
 		maxRotationDegLeft: -70,
@@ -103,7 +109,8 @@ var config = {
 
 		// The position of the player
 		top: 428,
-		left: 412,
+//		left: 412,
+		left: 262,
 
 		// The max time between shoots
 		timeToShoot: 5000,
@@ -118,7 +125,9 @@ var config = {
 		// Sound to be played when on each shoot
 		shotSnd: 'snd/launch.ogg',
 		// The time in miliseconds for rotate a degree the shooter, determinates the angular speed
-		rotationSpeedLoop: 8
+//		rotationSpeedLoop: 8
+		rotationSpeedLoop: 12
+		
 	},
 
 	// Configuration parameters for Bullble_Controller
@@ -128,14 +137,17 @@ var config = {
 		totalTypes: 8,
 		width: 32,
 		height: 32,
-		loopTime: 3,
-		steepPx: 3
+//		loopTime: 3,
+//		steepPx: 3
+		loopTime: 9,
+		steepPx: 9
 	},
 
 	// Configuration params for Compressor_Controller
 	compressor: {
 		// x axe position
-		x: 200,
+//		x: 200,
+		x: 50,
 		// Initial position on the Y axe
 		initY: -3,
 		// Time in ms between compresor movements
@@ -148,7 +160,8 @@ var config = {
 		newRootSnd: 'snd/new_root.ogg',
 		// Extensor iamge configuration parameters
 		extensor: {
-			x: 233,
+			x: 83,
+//			x: 233,
 			width: 188,
 			height: 28
 		}
@@ -159,7 +172,8 @@ var config = {
 		// The number os pixels to move the bubbles when a group is destroyed to create the crash animation
 		moveDestroyAnimation: 40,
 		// Initial X axis in px
-		x: 198,
+//		x: 198,
+		x: 48,
 		// The number of pixels that the bubbles are overlapping
 		heightCorrection: 4,
 		// The number of bubbles that determine a group
@@ -177,8 +191,9 @@ var config = {
 		// The number of points to increase the player score for each bubble
 		pointsByBubble: 5,
 		// The X axis in px position of the score text
-		x: 15,
+		x: 94,
 		// The Y axis in px position of the score text
-		y: 100
+		y: 2,
+		rowHeight: 30
 	}
 };

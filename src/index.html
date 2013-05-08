@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-
+        <meta name="viewport" content="height=490, initial-scale=1">
 		<!-- stylesheets -->
-		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link rel="stylesheet" href="css/styles_ffos.css" type="text/css">
 
 		<!-- javascript - The next lines should be minified -->
 		<script src="js/config.js"></script>
@@ -21,7 +21,9 @@
 		<script src="js/frozen_bubble.js"></script>
 	</head>
 	<body>
-		<div id="main_canvas"></div>
+	    <div id="main_wrapper">
+    		<div id="main_canvas"></div>
+		</div>
 		<script>
 			FrozenBubble.bootstrap();
 		</script>

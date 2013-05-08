@@ -309,74 +309,147 @@ var Player_Controller = (function(inCompressor) {
 				}
 			});
 
-            var joystick = new VirtualJoystick({mouseSupport: config.debug}),
-                joystick_moving = false;
-            
-            var t0;
-
-			document.addEventListener('touchstart', function(inEvent) {
-                t0 = new Date();
-			});
-			
-			document.addEventListener('touchend', function(inEvent) {
-			    var td = new Date() - t0;
-			    if (td < 200){
-                    shoot();
-			    }
-			});
-
-            if(config.debug){
-			    document.addEventListener('mousedown', function(inEvent) {
-                    t0 = new Date();
-			    });
-			    document.addEventListener('mouseup', function(inEvent) {
-			        var td = new Date() - t0;
-			        if (td < 120){
-                        shoot();
-			        }
-			        
-			    });
-            }
-
-
-            window.requestAnimFrame = (function(){
-              return  window.requestAnimationFrame       ||
-                      window.webkitRequestAnimationFrame ||
-                      window.mozRequestAnimationFrame    ||
-                      function( callback ){
-                        window.setTimeout(callback, 1000 / 60);
-                      };
-            })();
-
-
-            var checkJoystick = function (){
-				if (!stopped) {
-                    if (joystick.left()){
-                        joystick_moving = true;
-        				moveToLeft();
-                    }
-                    else if (joystick.right()){
-                        joystick_moving = true;
-        				moveToRight();
-                    }
-                    else {
-                        if (joystick_moving){
-                            joystick_moving = false;
-            				moveToCenter();
-                        }
-                    }
-                }
-            };
-            (function animloop(){
-              requestAnimFrame(animloop);
-              checkJoystick();
-            })();
-//            setInterval(function (){
-//            } ,100);
-            
 			document.addEventListener('keyup', function(inEvent) {
 				moveToCenter();
 			});
+
+
+            var canvas = document.getElementById("main_wrapper"),
+                rect = canvas.getBoundingClientRect();
+			document.addEventListener('touchstart', function(evt) {
+                var width = rect.width,
+                    posx = evt.touches[0].pageX - rect.left;
+				if (!stopped) {
+				    if (posx < (width/2 - 40)){
+                        moveToLeft();
+				    } else if (posx > (width/2 + 40)){
+                        moveToRight();
+				    }
+				    else {
+                        shoot();
+				    }
+				}
+
+			});
+			document.addEventListener('touchend', function(inEvent) {
+  				moveToCenter();
+			});
+
+//            var pointerstate = false;
+//            var t0;
+
+//			document.addEventListener('touchstart', function(evt) {
+//                t0 = new Date();
+//                var width = rect.width,
+//                    posx = evt.touches[0].pageX - rect.left;
+//				if (!stopped) {
+//				    if (posx < width/2){
+//                        pointerstate = 'left';
+////                        moveToLeft();
+//				    }
+//				    else {
+//                        pointerstate = 'right';
+////                        moveToRight();
+//				    }
+//				}
+
+//			});
+			
+//			document.addEventListener('touchend', function(inEvent) {
+//			    pointerstate = false;
+////  				moveToCenter();
+//			    var td = new Date() - t0;
+//			    if (td < 200){
+//			        pointerstate = 'shoot';
+////                    shoot();
+//			    }
+//			});
+//			document.addEventListener('touchcancel', function(inEvent) {
+//			    pointerstate = false;
+////  				moveToCenter();
+//			    var td = new Date() - t0;
+//			    if (td < 200){
+//			        pointerstate = 'shoot';
+////                    shoot();
+//			    }
+//			});
+
+//            var mouseon = false;
+//            if(config.debug){
+//			    document.addEventListener('mousedown', function(inEvent) {
+//                    mouseon = true;
+//                    t0 = new Date();
+//			    });
+//			    document.addEventListener('mouseup', function(inEvent) {
+//                    pointerstate = false;
+////    				moveToCenter();
+//                    mouseon = false;
+//			        var td = new Date() - t0;
+//			        if (td < 120){
+//                        shoot();
+//			        }
+//			        
+//			    });
+//            }
+//            var canvas = document.getElementById("main_wrapper"),
+//                rect = canvas.getBoundingClientRect();
+//                
+//			// Add the events to detect the keys for user controllers
+//			document.addEventListener('touchmove', function(evt) {
+//                var width = rect.width,
+//                    posx = evt.touches[0].pageX - rect.left;
+//				if (!stopped) {
+//				    if (posx < width/2){
+//                        pointerstate = 'left';
+////                        moveToLeft();
+//				    }
+//				    else {
+//                        pointerstate = 'right';
+////                        moveToRight();
+//				    }
+//				}
+//			});
+//            if(config.debug){
+//			    document.addEventListener('mousemove', function(evt) {
+//                    var width = rect.width,
+//                        posx = evt.pageX - rect.left;
+
+//			        if (!stopped && mouseon) {
+//			            if (posx < width/2){
+//                            pointerstate = 'left';
+////                            moveToLeft();
+//			            }
+//			            else {
+//                            pointerstate = 'right';
+////                            moveToRight();
+//			            }
+//			        }
+//			    });
+//            }
+
+//            
+//            window.requestAnimFrame = (function(){
+//              return  function( callback ){
+//                        window.setTimeout(callback, 200);
+//                      };
+//            })();
+
+//            (function animloop(){
+//                  requestAnimFrame(animloop);
+//                  if (pointerstate == "shoot"){
+//                        shoot();
+//                  pointerstate = false;
+//                  } else if (pointerstate == "left"){
+//                      moveToLeft();
+//                  } else if (pointerstate == "right"){
+//                      moveToRight();
+//                  }
+//                  else {
+//                      moveToCenter();
+//                  }
+//            })();
+
+           
 		}
 	};
 });

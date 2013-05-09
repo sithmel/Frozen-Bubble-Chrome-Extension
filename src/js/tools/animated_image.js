@@ -14,7 +14,24 @@
   * @param inTimeInterval <optional int>: The total number of images contained into the spreadsheet
   *
   */
+// shim layer with setTimeout fallback
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            return window.setTimeout(callback, 1000 / 60);
+          };
+})();
 
+window.cancelAnimFrame = (function(){
+  return  window.cancelAnimationFrame       ||
+          window.webkitCancelAnimationFrame ||
+          window.mozCancelAnimationFrame    ||
+          function( id ){
+            return window.clearTimeout(id);
+          };
+})();
 
 var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inNumberOfImages) {
 	// Will contain the DOM div element that represents the image
@@ -95,7 +112,8 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		setAnimationImage(currentPos);
 
 		if (!stop) {
-			animationLoop = setTimeout(animateFrame, timeInterval);
+			//animationLoop = setTimeout(animateFrame, timeInterval);
+			animationLoop = window.requestAnimFrame(animateFrame);
 		} else {
 			if (endAnimationCallBack !== null) {
 				endAnimationCallBack();
@@ -159,7 +177,10 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 				moveInfo.endMovCallback(my);
 			}
 		} else {
-			moveInfo.movingLoop = setTimeout(moveLoop, moveInfo.loopTime);
+//			moveInfo.movingLoop = setTimeout(moveLoop, moveInfo.loopTime);
+			moveInfo.movingLoop = window.requestAnimFrame(moveLoop);
+
+			
 		}
 
 		// Check if isset a function that should be called each steep, and call it in this case
@@ -449,7 +470,8 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		  */
 		stop: function() {
 			movingTo = false;
-			clearTimeout(moveInfo.movingLoop);
+			cancelAnimFrame(moveInfo.movingLoop);
+			//clearTimeout(moveInfo.movingLoop);
 		},
 
 		/**
@@ -470,7 +492,8 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 		moveTo: function(inX, inY, inLoopTime, inCallBack, inSteepPx, inSteepCheckFunc, inSteepCheckFuncObj) {
 			movingTo = true;
 			if ((moveInfo !== null) && (moveInfo.movingLoop !== undefined)) {
-				clearTimeout(moveInfo.movingLoop);
+//				clearTimeout(moveInfo.movingLoop);
+				cancelAnimFrame(moveInfo.movingLoop);
 			}
 
 			// Configure the internal method
@@ -498,7 +521,8 @@ var AnimatedImage_Tool = (function(inClass, inStartPosition, inTimeInterval, inN
 				currentPos = inStartPosition;
 				setAnimationImage(inStartPosition);
 
-				clearTimeout(animationLoop);
+//				clearTimeout(animationLoop);
+				cancelAnimFrame(animationLoop);
 
 				animationLoop = null;
 				endAnimationCallBack = null;

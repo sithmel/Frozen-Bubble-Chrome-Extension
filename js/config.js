@@ -126,7 +126,7 @@ var config = {
 		shotSnd: 'snd/launch.ogg',
 		// The time in miliseconds for rotate a degree the shooter, determinates the angular speed
 //		rotationSpeedLoop: 8
-		rotationSpeedLoop: 12
+		rotationSpeedLoop: 8
 		
 	},
 

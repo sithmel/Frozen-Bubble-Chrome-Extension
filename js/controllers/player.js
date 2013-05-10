@@ -110,7 +110,9 @@ var Player_Controller = (function(inCompressor) {
 		}
 
 		// Create a loop that checks all the periodically if a roation is in course
-		rotationLoop = setTimeout(rotateObserver, config.player.rotationSpeedLoop);
+//		rotationLoop = setTimeout(rotateObserver, config.player.rotationSpeedLoop);
+		rotationLoop = window.requestAnimFrame(rotateObserver);
+
 	};
 
 	/**
@@ -219,7 +221,9 @@ var Player_Controller = (function(inCompressor) {
 
 				// Stop all the timmers in order to stop all the animations
 				stopped = true;
-				clearTimeout(rotationLoop);
+				//clearTimeout(rotationLoop);
+			    cancelAnimFrame(rotationLoop);
+				
 				clearTimeout(hurryTimeout);
 				clearTimeout(alertTimeout);
 

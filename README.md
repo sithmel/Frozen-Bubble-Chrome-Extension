@@ -12,7 +12,7 @@ Credits
 Original work and artworks: The frozen bubble team
 http://www.frozen-bubble.org/
 
-alonsovidales: chrome extension
+Chrome extension: alonsovidales: 
 https://github.com/alonsovidales/Frozen-Bubble-Chrome-Extension
 
 

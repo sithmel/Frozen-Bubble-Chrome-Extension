@@ -5,10 +5,62 @@
 
 html, body {
 	background: #000000;
+/*	height: 100%;*/
+    overflow: hidden;
+}
+
+
+body{
+	min-width: 340px;
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                -moz-linear-gradient(top,  #5c9fb9 0%, #f9f3b9 100%); /* FF3.6+ */
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5c9fb9), color-stop(100%,#f9f3b9)); /* Chrome,Safari4+ */
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                -webkit-linear-gradient(top,  #5c9fb9 0%,#f9f3b9 100%); /* Chrome10+,Safari5.1+ */
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                -o-linear-gradient(top,  #5c9fb9 0%,#f9f3b9 100%); /* Opera 11.10+ */
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                -ms-linear-gradient(top,  #5c9fb9 0%,#f9f3b9 100%); /* IE10+ */
+
+    background-image: url('../img/backgrounds/back_one_player_narrow.png'),
+                url('../img/backgrounds/noisy_grid.png'),
+                linear-gradient(to bottom,  #5c9fb9 0%,#f9f3b9 100%); /* W3C */
+
+    background-repeat: no-repeat, repeat, repeat;
+    background-position: center 0, 0 0, 0 0;
+
+
+/*    background: */
+/*    background: */
+/*    background: */
+/*    background: */
+/*    background: */
+
+}
+
+#main_wrapper{
+/*	background: url('../img/backgrounds/back_one_player_narrow.png') no-repeat center 0;*/
+	width: 340px;
+/*	height: 480px;*/
+	height: 490px;
+	margin:auto;
 }
 
 div#main_canvas {
-	width: 640px;
+    position: absolute;
+/*	width: 640px;*/
+	width: 340px;
 	height: 480px;
 }
 
@@ -36,10 +88,11 @@ div#main_canvas {
 	background-image: url('../img/penguins/win.png');
 }
 
-div.game_background {
-	background-image: url('../img/backgrounds/back_one_player.png');
-	background-repeat: no-repeat;
-}
+/*div.game_background {*/
+/*	background-image: url('../img/backgrounds/back_one_player.png');*/
+/*	background-position: center 0;*/
+/*	background-repeat: no-repeat;*/
+/*}*/
 
 .shooter {
 	background-image: url('../img/shooter/shooter.png');
@@ -142,4 +195,37 @@ div.game_background {
 	background-image: url('../img/alerts/hurry.png');
 	width: 244px;
 	height: 102px;
+}
+
+.score-text,
+.level-text{
+    width: 160px;
+    height: 30px;
+/*    border: 2px dashed #55acf0;*/
+    background-color: rgba(62, 97, 124, 0.8);
+    z-index: 100;
+}
+
+#credits{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    position: fixed;
+    padding: 10px;
+    top: 100px;
+    z-index: 200;
+    display: none;
+}
+
+#info{
+    position: absolute;
+    top: 10px;
+    right:15px;
+    cursor: pointer;
+    background-color: #f9f3b9;
+    border-radius: 50%;
+    color: #5c9fb9 ;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    padding-top: 2px;
 }

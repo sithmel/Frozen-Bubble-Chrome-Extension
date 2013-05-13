@@ -319,7 +319,8 @@ var Player_Controller = (function(inCompressor) {
 
 
             var canvas = document.getElementById("main_wrapper"),
-                rect = canvas.getBoundingClientRect();
+                //rect = document.getBoundingClientRect();
+                rect = document.getElementsByTagName('body')[0].getBoundingClientRect();
 			document.addEventListener('touchstart', function(evt) {
                 var width = rect.width,
                     posx = evt.touches[0].pageX - rect.left;

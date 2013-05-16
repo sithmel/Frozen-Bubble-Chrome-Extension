@@ -9,15 +9,13 @@ html, body {
 /*	height: 100%;*/
 	margin: 0;
 	padding: 0;
-	max-width: 340px;
+/*	max-width: 340px;*/
 }
 
 html{
-
 }
-body{
-	width: 340px;
 
+body{
     background-image: url('../img/backgrounds/back_one_player_narrow.png'),
                 url('../img/backgrounds/noisy_grid.png'),
                 -moz-linear-gradient(top,  #5c9fb9 0%, #f9f3b9 100%); /* FF3.6+ */

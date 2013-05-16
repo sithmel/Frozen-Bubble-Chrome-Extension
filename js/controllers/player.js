@@ -392,8 +392,9 @@ var Player_Controller = (function(inCompressor) {
 					moveToRight();
                 }
                 else {
-    				moveToCenter();
+    				//moveToCenter();
                 }                
+     			direction = '';
             }, 100);            
 
 

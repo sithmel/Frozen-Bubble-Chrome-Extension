@@ -9,10 +9,7 @@ html, body {
 /*	height: 100%;*/
 	margin: 0;
 	padding: 0;
-/*	max-width: 340px;*/
-}
-
-html{
+/*	width: 400px;*/
 }
 
 body{
@@ -43,12 +40,13 @@ body{
     background-repeat: no-repeat, repeat, repeat;
     background-position: center 0, 0 0, 0 0;
 
-
 }
 
 #main_wrapper{
 /*	background: url('../img/backgrounds/back_one_player_narrow.png') no-repeat center 0;*/
 	width: 340px;
+	margin: 0;
+	padding: 0;
 /*	height: 480px;*/
 	height: 490px;
 	margin:auto;

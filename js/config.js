@@ -9,7 +9,7 @@ var config = {
 	debug: false,
 
 	// Link to the author CV
-	cvLink: '',
+	cvLink: 'https://github.com/sithmel/Frozen-Bubble-Chrome-Extension',
 
 	// Main window configuration
 	windowConf: {
@@ -140,7 +140,7 @@ var config = {
 //		loopTime: 3,
 //		steepPx: 3
 		loopTime: 9,
-		steepPx: 9
+		steepPx: 12
 	},
 
 	// Configuration params for Compressor_Controller

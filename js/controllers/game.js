@@ -80,23 +80,16 @@ var Game_Controller = (function() {
 	  *
 	  */
 	var showCredits = function() {
-        if (!config.cvLink){
-            return;
-        }
-		// Creates the wood background
-		var backgroundDiv = document.createElement("div");
-		backgroundDiv.classList.add('credits_background');
-		mainCanvas.appendChild(backgroundDiv);
+        var info = document.getElementById('info'),
+            credits = document.getElementById('credits');
 
-		// Creates the text and adds the link
-		var credits = new Text_Tool('created by:');
-		credits.init(18, 437);
-		credits = new Text_Tool('alonso vidales');
-		credits.init(18, 457);
-		credits.addLink(function (){
-			chrome.tabs.create({'url': config.cvLink});
-			window.close();
-		});
+        info.addEventListener('click', function (evt){
+            var go = confirm('Go to game credits ?');
+            if (go){
+                window.location = config.cvLink;
+            }
+        });
+
 	};
 
 	// Public scope

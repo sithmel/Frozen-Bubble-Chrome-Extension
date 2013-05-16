@@ -98,13 +98,15 @@ var Player_Controller = (function(inCompressor) {
 		if (currentMovement !== null) {
 			if (currentMovement == 'left') {
 				if (shooterRotatedDeg != config.shooter.maxRotationDegLeft) {
-					shooter.rotate(--shooterRotatedDeg);
+				    shooterRotatedDeg -= 2;
+					shooter.rotate(shooterRotatedDeg);
 				}
 			}
 	
 			if (currentMovement == 'right') {
 				if (shooterRotatedDeg != config.shooter.maxRotationDegRight) {
-					shooter.rotate(++shooterRotatedDeg);
+				    shooterRotatedDeg += 2;
+					shooter.rotate(shooterRotatedDeg);
 				}
 			}
 		}
@@ -318,143 +320,85 @@ var Player_Controller = (function(inCompressor) {
 			});
 
 
-            var canvas = document.getElementById("main_wrapper"),
-                //rect = document.getBoundingClientRect();
-                rect = document.getElementsByTagName('body')[0].getBoundingClientRect();
-			document.addEventListener('touchstart', function(evt) {
-                var width = rect.width,
-                    posx = evt.touches[0].pageX - rect.left;
-				if (!stopped) {
-				    if (posx < (width/2 - 40)){
-                        moveToLeft();
-				    } else if (posx > (width/2 + 40)){
-                        moveToRight();
-				    }
-				    else {
-                        shoot();
-				    }
-				}
 
-			});
-			document.addEventListener('touchend', function(inEvent) {
-  				moveToCenter();
-			});
 
-//            var pointerstate = false;
-//            var t0;
-
-//			document.addEventListener('touchstart', function(evt) {
-//                t0 = new Date();
-//                var width = rect.width,
-//                    posx = evt.touches[0].pageX - rect.left;
-//				if (!stopped) {
-//				    if (posx < width/2){
-//                        pointerstate = 'left';
-////                        moveToLeft();
-//				    }
-//				    else {
-//                        pointerstate = 'right';
-////                        moveToRight();
-//				    }
-//				}
-
-//			});
-			
-//			document.addEventListener('touchend', function(inEvent) {
-//			    pointerstate = false;
-////  				moveToCenter();
-//			    var td = new Date() - t0;
-//			    if (td < 200){
-//			        pointerstate = 'shoot';
-////                    shoot();
-//			    }
-//			});
-//			document.addEventListener('touchcancel', function(inEvent) {
-//			    pointerstate = false;
-////  				moveToCenter();
-//			    var td = new Date() - t0;
-//			    if (td < 200){
-//			        pointerstate = 'shoot';
-////                    shoot();
-//			    }
-//			});
-
-//            var mouseon = false;
-//            if(config.debug){
-//			    document.addEventListener('mousedown', function(inEvent) {
-//                    mouseon = true;
-//                    t0 = new Date();
-//			    });
-//			    document.addEventListener('mouseup', function(inEvent) {
-//                    pointerstate = false;
-////    				moveToCenter();
-//                    mouseon = false;
-//			        var td = new Date() - t0;
-//			        if (td < 120){
-//                        shoot();
-//			        }
-//			        
-//			    });
-//            }
 //            var canvas = document.getElementById("main_wrapper"),
-//                rect = canvas.getBoundingClientRect();
-//                
-//			// Add the events to detect the keys for user controllers
-//			document.addEventListener('touchmove', function(evt) {
+//                rect = document.getElementsByTagName('body')[0].getBoundingClientRect();
+//			document.addEventListener('touchstart', function(evt) {
 //                var width = rect.width,
 //                    posx = evt.touches[0].pageX - rect.left;
 //				if (!stopped) {
-//				    if (posx < width/2){
-//                        pointerstate = 'left';
-////                        moveToLeft();
+//				    if (posx < (width/2 - 40)){
+//                        moveToLeft();
+//				    } else if (posx > (width/2 + 40)){
+//                        moveToRight();
 //				    }
 //				    else {
-//                        pointerstate = 'right';
-////                        moveToRight();
+//                        shoot();
 //				    }
 //				}
+
 //			});
-//            if(config.debug){
-//			    document.addEventListener('mousemove', function(evt) {
-//                    var width = rect.width,
-//                        posx = evt.pageX - rect.left;
+//			document.addEventListener('touchend', function(inEvent) {
+//  				moveToCenter();
+//			});
+        
 
-//			        if (!stopped && mouseon) {
-//			            if (posx < width/2){
-//                            pointerstate = 'left';
-////                            moveToLeft();
-//			            }
-//			            else {
-//                            pointerstate = 'right';
-////                            moveToRight();
-//			            }
-//			        }
-//			    });
-//            }
+            var canvas = document.getElementById("main_wrapper"),
+                rect = document.getElementsByTagName('body')[0].getBoundingClientRect(),
+                basex, direction, t0;
 
-//            
-//            window.requestAnimFrame = (function(){
-//              return  function( callback ){
-//                        window.setTimeout(callback, 200);
-//                      };
-//            })();
+			document.addEventListener('touchstart', function(evt) {
+			    basex = evt.touches[0].pageX;
+			    t0 = new Date().getTime();
+			});
 
-//            (function animloop(){
-//                  requestAnimFrame(animloop);
-//                  if (pointerstate == "shoot"){
-//                        shoot();
-//                  pointerstate = false;
-//                  } else if (pointerstate == "left"){
-//                      moveToLeft();
-//                  } else if (pointerstate == "right"){
-//                      moveToRight();
-//                  }
-//                  else {
-//                      moveToCenter();
-//                  }
-//            })();
+			document.addEventListener('touchmove', function(evt) {
+			    if (Math.abs(basex - evt.touches[0].pageX) < 10){
+  		            direction = 'center';
+			        return;
+			    }
+			    if (basex > evt.touches[0].pageX){
+			        direction = 'left';
+			    }
+			    else {
+			        direction = 'right';
+			    }
 
-           
+			});
+
+			document.addEventListener('touchend', function(inEvent) {
+			    var t1 = new Date().getTime();
+		        direction = 'center';
+		        
+		        if (t1 - t0 < 120){
+				    shoot();		            
+		        }
+
+			});
+
+
+            setInterval(function (){
+				if (stopped) {
+				    return;
+				}
+                if (direction === 'center'){
+    				moveToCenter();
+                }
+                else if (direction === 'left'){
+    				moveToLeft();
+                }
+                else if (direction === 'right'){
+					moveToRight();
+                }
+                else {
+    				moveToCenter();
+                }                
+            }, 100);            
+
+
+
+
 		}
 	};
 });

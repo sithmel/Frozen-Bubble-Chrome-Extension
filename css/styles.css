@@ -6,13 +6,20 @@
 html, body {
 	background: #000000;
     overflow: hidden;
-/*	height: 100%;*/
 	margin: 0;
 	padding: 0;
-/*	width: 400px;*/
+/*	max-width: 400px;*/
+/*	width: 100%;*/
+
+	height: 100%;
+	
 }
 
+
+
 body{
+	min-width: 340px;
+
     background-image: url('../img/backgrounds/back_one_player_narrow.png'),
                 url('../img/backgrounds/noisy_grid.png'),
                 -moz-linear-gradient(top,  #5c9fb9 0%, #f9f3b9 100%); /* FF3.6+ */
@@ -43,11 +50,9 @@ body{
 }
 
 #main_wrapper{
-/*	background: url('../img/backgrounds/back_one_player_narrow.png') no-repeat center 0;*/
 	width: 340px;
 	margin: 0;
 	padding: 0;
-/*	height: 480px;*/
 	height: 490px;
 	margin:auto;
 }
